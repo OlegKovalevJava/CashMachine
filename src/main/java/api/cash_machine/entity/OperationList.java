@@ -16,4 +16,6 @@ public class OperationList {
     @JoinColumn(name = "client_id")
     private ClientEntity clientEntity;
 
+
+
 }
