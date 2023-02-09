@@ -1,8 +1,8 @@
 package api.cash_machine.controller;
 
 import api.cash_machine.entity.TransferBalance;
+import api.cash_machine.model.ClientModel;
 import api.cash_machine.service.ClientService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -18,18 +18,17 @@ public class BalanceController {
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public BigDecimal getBalance(@PathVariable Long id) {
         return clientService.getBalance(id);
     }
 
     @PostMapping("/takeMoney")
-    public BigDecimal takeMoney(@RequestBody TransferBalance transferBalance) {
+    public ClientModel takeMoney(@RequestBody TransferBalance transferBalance) {
         return clientService.takeMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
     }
 
     @PostMapping("/putMoney")
-    public BigDecimal putMoney(@RequestBody TransferBalance transferBalance) {
+    public ClientModel putMoney(@RequestBody TransferBalance transferBalance) {
         return clientService.putMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
     }
 

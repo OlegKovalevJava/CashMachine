@@ -1,6 +1,7 @@
 package api.cash_machine.service;
 
 import api.cash_machine.entity.ClientEntity;
+import api.cash_machine.model.ClientModel;
 import api.cash_machine.repository.ClientRepo;
 import org.springframework.stereotype.Service;
 
@@ -30,16 +31,18 @@ public class ClientService {
                 .getBalance();
     }
 
-    public BigDecimal takeMoney(Long idDonor, BigDecimal amount) {
-        BigDecimal currentBalance = clientRepo.findById(idDonor).get().getBalance();
-        BigDecimal updatedBalance = currentBalance.subtract(amount);
-        return updatedBalance;
+    public ClientModel putMoney(Long idDonor, BigDecimal amount) {
+        ClientEntity clientEntity = clientRepo.findById(idDonor).get();
+        BigDecimal updatedBalance = clientEntity.getBalance().add(amount);
+        clientEntity.setBalance(updatedBalance);
+        return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
-    public BigDecimal putMoney(Long idDonor, BigDecimal amount) {
-        BigDecimal currentBalance = clientRepo.findById(idDonor).get().getBalance();
-        BigDecimal updatedBalance = currentBalance.add(amount);
-        return updatedBalance;
+    public ClientModel takeMoney(Long idDonor, BigDecimal amount) {
+        ClientEntity clientEntity = clientRepo.findById(idDonor).get();
+        BigDecimal updatedBalance = clientEntity.getBalance().subtract(amount);
+        clientEntity.setBalance(updatedBalance);
+        return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
 }

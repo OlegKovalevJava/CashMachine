@@ -1,12 +1,8 @@
 package api.cash_machine.repository;
 
 import api.cash_machine.entity.ClientEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-
-public interface ClientRepo extends JpaRepository<ClientEntity, Long> {
-
+public interface ClientRepo extends CrudRepository<ClientEntity, Long> {
 
 }
