@@ -18,7 +18,7 @@ public class BalanceController {
     }
 
     @GetMapping("/{id}")
-    public BigDecimal getBalance(@PathVariable Long id) {
+    public ClientModel getBalance(@PathVariable Long id) {
         return clientService.getBalance(id);
     }
 

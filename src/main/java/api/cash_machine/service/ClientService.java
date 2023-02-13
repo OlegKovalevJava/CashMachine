@@ -25,10 +25,9 @@ public class ClientService {
         return id;
     }
 
-    public BigDecimal getBalance(Long id) {
-        return clientRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("user with this id was not found"))
-                .getBalance();
+    public ClientModel getBalance(Long idDonor) {
+        ClientEntity clientEntity = clientRepo.findById(idDonor).get();
+        return ClientModel.toModel(clientEntity);
     }
 
     public ClientModel putMoney(Long idDonor, BigDecimal amount) {
