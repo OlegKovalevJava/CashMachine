@@ -17,7 +17,4 @@ public class ClientEntity {
     private String clientName;
     private BigDecimal balance;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientEntity")
-    private List<OperationList> operationLists;
-
 }

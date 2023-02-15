@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class TransferBalance {
-
     private Long idDonor;
     private Long idRecipient;
     private BigDecimal amountTransfer;
