@@ -51,6 +51,12 @@ public class ClientService {
         ClientEntity clientEntity = clientRepo.findById(idDonor).get();
         BigDecimal updatedBalance = clientEntity.getBalance().subtract(amount);
         clientEntity.setBalance(updatedBalance);
+        OperationList operationList = new OperationList();
+        operationList.setOperationAmount(amount);
+        operationList.setOperationDate(new Date());
+        operationList.setOperationType("withdrawal from the balance");
+        operationList.setClient(clientEntity);
+        operationRepo.save(operationList);
         return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
