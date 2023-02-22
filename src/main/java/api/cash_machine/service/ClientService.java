@@ -15,6 +15,7 @@ public class ClientService {
 
     private final ClientRepo clientRepo;
     private final OperationRepo operationRepo;
+
     public ClientService(ClientRepo clientRepo, OperationRepo operationRepo) {
         this.clientRepo = clientRepo;
         this.operationRepo = operationRepo;
