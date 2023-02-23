@@ -36,7 +36,8 @@ public class ClientService {
     }
 
     public ClientModel putMoney(Long idDonor, BigDecimal amount) {
-        ClientEntity clientEntity = clientRepo.findById(idDonor).get();
+        ClientEntity clientEntity = clientRepo.findById(idDonor)
+                .orElseThrow(() -> new IllegalArgumentException("user with this id was not found"));
         BigDecimal updatedBalance = clientEntity.getBalance().add(amount);
         clientEntity.setBalance(updatedBalance);
         OperationList operationList = new OperationList();
@@ -49,7 +50,8 @@ public class ClientService {
     }
 
     public ClientModel takeMoney(Long idDonor, BigDecimal amount) {
-        ClientEntity clientEntity = clientRepo.findById(idDonor).get();
+        ClientEntity clientEntity = clientRepo.findById(idDonor)
+                .orElseThrow(() -> new IllegalArgumentException("user with this id was not found"));
         BigDecimal updatedBalance = clientEntity.getBalance().subtract(amount);
         clientEntity.setBalance(updatedBalance);
         OperationList operationList = new OperationList();
