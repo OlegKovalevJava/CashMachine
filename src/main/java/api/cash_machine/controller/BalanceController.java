@@ -2,34 +2,32 @@ package api.cash_machine.controller;
 
 import api.cash_machine.entity.TransferBalance;
 import api.cash_machine.model.ClientModel;
-import api.cash_machine.service.ClientService;
+import api.cash_machine.service.BalanceService;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/balance")
 public class BalanceController {
 
-    private final ClientService clientService;
+    private final BalanceService balanceService;
 
-    public BalanceController(ClientService clientService) {
-        this.clientService = clientService;
+    public BalanceController(BalanceService balanceService) {
+        this.balanceService = balanceService;
     }
 
     @GetMapping("/{id}")
     public ClientModel getBalance(@PathVariable Long id) {
-        return clientService.getBalance(id);
+        return balanceService.getBalance(id);
     }
 
     @PostMapping("/takeMoney")
     public ClientModel takeMoney(@RequestBody TransferBalance transferBalance) {
-        return clientService.takeMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
+        return balanceService.takeMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
     }
 
     @PostMapping("/putMoney")
     public ClientModel putMoney(@RequestBody TransferBalance transferBalance) {
-        return clientService.putMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
+        return balanceService.putMoney(transferBalance.getIdDonor(), transferBalance.getAmountTransfer());
     }
 
 }
