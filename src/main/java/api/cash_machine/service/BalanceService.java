@@ -54,4 +54,6 @@ public class BalanceService {
         return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
+
+
 }
