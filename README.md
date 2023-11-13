@@ -1,7 +1,6 @@
 Final project Stage 1. Working with the balance
 
 Author: Kovalev Oleg 
-Email: kovalyovop@yandex.ru
 
 Technologies used: Java, Maven, PostgreSQL, Spring Boot
 
