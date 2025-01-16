@@ -15,6 +15,7 @@ public class OperationListModel {
     public static OperationListModel toModel(OperationList operationList) {
         OperationListModel model = new OperationListModel();
         model.setAmount(operationList.getOperationAmount());
+
         return model;
     }
 

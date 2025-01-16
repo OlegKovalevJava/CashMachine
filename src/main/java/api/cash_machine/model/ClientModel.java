@@ -15,6 +15,8 @@ public class ClientModel {
     public static ClientModel toModel(ClientEntity clientEntity) {
         ClientModel model = new ClientModel();
         model.setBalance(clientEntity.getBalance());
+
         return model;
     }
+
 }

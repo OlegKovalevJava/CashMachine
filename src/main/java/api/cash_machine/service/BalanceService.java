@@ -37,6 +37,7 @@ public class BalanceService {
         operationList.setOperationType("replenishment of the balance");
         operationList.setClient(clientEntity);
         operationRepo.save(operationList);
+
         return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
@@ -51,9 +52,8 @@ public class BalanceService {
         operationList.setOperationType("withdrawal from the balance");
         operationList.setClient(clientEntity);
         operationRepo.save(operationList);
+
         return ClientModel.toModel(clientRepo.save(clientEntity));
     }
-
-
 
 }
