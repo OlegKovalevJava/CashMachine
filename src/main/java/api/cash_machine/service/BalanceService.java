@@ -27,30 +27,36 @@ public class BalanceService {
     }
 
     public ClientModel putMoney(Long idDonor, BigDecimal amount) {
-        ClientEntity clientEntity = clientRepo.findById(idDonor)
-                .orElseThrow(() -> new IllegalArgumentException("user with this id was not found"));
+        ClientEntity clientEntity = clientRepo.findById(idDonor).
+                orElseThrow(() -> new IllegalArgumentException("ID was not found"));
+
         BigDecimal updatedBalance = clientEntity.getBalance().add(amount);
         clientEntity.setBalance(updatedBalance);
+
         OperationList operationList = new OperationList();
         operationList.setOperationAmount(amount);
         operationList.setOperationDate(new Date());
         operationList.setOperationType("replenishment of the balance");
         operationList.setClient(clientEntity);
+
         operationRepo.save(operationList);
 
         return ClientModel.toModel(clientRepo.save(clientEntity));
     }
 
     public ClientModel takeMoney(Long idDonor, BigDecimal amount) {
-        ClientEntity clientEntity = clientRepo.findById(idDonor)
-                .orElseThrow(() -> new IllegalArgumentException("user with this id was not found"));
+        ClientEntity clientEntity =
+                clientRepo.findById(idDonor).orElseThrow(() -> new IllegalArgumentException("ID was not found"));
+
         BigDecimal updatedBalance = clientEntity.getBalance().subtract(amount);
         clientEntity.setBalance(updatedBalance);
+
         OperationList operationList = new OperationList();
         operationList.setOperationAmount(amount);
         operationList.setOperationDate(new Date());
         operationList.setOperationType("withdrawal from the balance");
         operationList.setClient(clientEntity);
+
         operationRepo.save(operationList);
 
         return ClientModel.toModel(clientRepo.save(clientEntity));
